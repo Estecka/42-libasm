@@ -1,6 +1,6 @@
-SRCS	= main.c \
+SRCS	= ft_helloworld.s \
 
-OBJS	= ${SRCS:.c=.o}
+OBJS	= ${SRCS:.s=.o}
 
 OS		= $(shell uname)
 
@@ -12,16 +12,20 @@ CC		= clang
 else
 CC		= gcc
 endif
-CFLAGS	= -O3 -Wall -Wextra -Werror
+CFLAGS	= -Wall -Wextra -Werror
 LIBFLAGS = \
 	-L ./ -lasm \
 
 
 
-${NAME}:
+${NAME}: ${OBJS}
+	ar rcs ${NAME} ${OBJS}
 
 ${TEST}: ${NAME}
-	gcc -o ${TEST} main.c ${LIBFLAGS}
+	${CC} -o ${TEST} main.c ${CFLAGS} ${LIBFLAGS}
+
+%.o: %.s
+	nasm -o $@ $< -f elf64
 
 all: ${NAME} ${TEST}
 
@@ -33,7 +37,7 @@ fclean:
 	rm -f *.o
 	rm -f *.gch
 	rm -f ${NAME}
-	rm -g ${TEST}
+	rm -f ${TEST}
 
 re: fclean all
 
