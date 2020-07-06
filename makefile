@@ -25,7 +25,11 @@ ${TEST}: ${NAME}
 	${CC} -o ${TEST} main.c ${CFLAGS} ${LIBFLAGS}
 
 %.o: %.s
+ifeq (${OS}, Linux)
 	nasm -o $@ $< -f elf64
+else
+	nasm -o $@ $< -f macho64
+endif
 
 all: ${NAME} ${TEST}
 
