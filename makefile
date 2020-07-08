@@ -1,4 +1,5 @@
 SRCS	= ft_helloworld.s \
+		ft_strlen.s \
 
 OBJS	= ${SRCS:.s=.o}
 
