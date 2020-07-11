@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abaur <abaur@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,13 +10,21 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "main.h"
+#ifndef MAIN_H
+# define MAIN_H
 
-extern int	main(int argc, char **args)
-{
-	(void)argc;
-	(void)args;
 
-	ft_helloworld();
-	test_strlen();
-}
+#include <stdio.h>
+#include <string.h>
+
+# include "libasm.h"
+# include "logutil/logutil.h"
+
+void	test_strlen();
+void	test_strcpy();
+void	test_strcmp();
+void	test_write();
+void	test_read();
+void	test_strdup();
+
+#endif
