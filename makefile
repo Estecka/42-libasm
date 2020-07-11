@@ -2,6 +2,7 @@ SRCS	= ft_helloworld.s \
 		ft_strlen.s \
 		ft_strcpy.s \
 		ft_strcmp.s \
+		ft_write.s \
 
 OBJS	= ${SRCS:=.o}
 
@@ -10,6 +11,7 @@ TESTSRCS = main.c \
 	ft_strlen.c \
 	ft_strcpy.c \
 	ft_strcmp.c \
+	ft_write.c \
 
 TESTOBJS = ${TESTSRCS:=.o}
 

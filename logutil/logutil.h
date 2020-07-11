@@ -30,6 +30,7 @@
 ** # define BOOP printf("Boop\n");
 */
 
+int	printclear();
 int	printfc(int colour, short boldness, const char *format, ...
 ) __attribute__((format(printf,3,4)));
 int	vprintfc(int colour, short boldness, const char *format,

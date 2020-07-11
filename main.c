@@ -21,4 +21,5 @@ extern int	main(int argc, char **args)
 	test_strlen();
 	test_strcpy();
 	test_strcmp();
+	test_write();
 }

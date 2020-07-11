@@ -10,8 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <unistd.h>
 #include <stdio.h>
 #include <stdarg.h>
+
+int printclear()
+{
+	return (write(0, "\033[0m", 4));
+}
 
 int	vprintfc(int colour, short bold, const char *format, va_list args)
 {
