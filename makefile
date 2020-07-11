@@ -1,6 +1,7 @@
 SRCS	= ft_helloworld.s \
 		ft_strlen.s \
 		ft_strcpy.s \
+		ft_strcmp.s \
 
 OBJS	= ${SRCS:=.o}
 
@@ -8,6 +9,7 @@ TESTSRCS = main.c \
 	logutil/logutil.c \
 	ft_strlen.c \
 	ft_strcpy.c \
+	ft_strcmp.c \
 
 TESTOBJS = ${TESTSRCS:=.o}
 
