@@ -22,4 +22,5 @@ extern int	main(int argc, char **args)
 	test_strcpy();
 	test_strcmp();
 	test_write();
+	test_read();
 }
