@@ -1,12 +1,17 @@
 SRCS	= ft_helloworld.s \
 		ft_strlen.s \
 
-OBJS	= ${SRCS:.s=.o}
+OBJS	= ${SRCS:=.o}
 
-OS		= $(shell uname)
+TESTSRCS = main.c \
+	ft_strlen.c \
+
+TESTOBJS = ${TESTSRCS:=.o}
 
 NAME	= libasm.a
 TEST	= test.out
+
+OS		= $(shell uname)
 
 ifeq (${OS}, Linux)
 CC		= clang
@@ -22,11 +27,15 @@ LIBFLAGS = \
 ${NAME}: ${OBJS}
 	ar rcs ${NAME} ${OBJS}
 
-${TEST}: ${NAME}
-	${CC} -o ${TEST} main.c ${CFLAGS} ${LIBFLAGS}
+test: ${TEST}
+${TEST}: ${NAME} ${TESTOBJS}
+	${CC} -o ${TEST} ${TESTOBJS} ${CFLAGS} ${LIBFLAGS}
 
-%.o: %.s
+%.s.o: %.s
 	nasm -o $@ $< -f elf64
+
+%.c.o: %.c
+	${CC} -c -o $@ $< ${CFLAGS}
 
 all: ${NAME} ${TEST}
 
