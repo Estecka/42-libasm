@@ -1,6 +1,8 @@
 section .text
 	global ft_strcpy
 
+	; rdi dst
+	; rsi src
 	ft_strcpy:
 		mov rax, rdi; Sets the return value to dst
 

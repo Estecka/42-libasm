@@ -20,6 +20,7 @@ extern int	main(int argc, char **args)
 	ft_helloworld();
 	test_strlen();
 	test_strcpy();
+	test_strdup();
 	test_strcmp();
 	test_write();
 }
