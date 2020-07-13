@@ -29,6 +29,7 @@ static void test(int fd, const char* buffer, size_t count)
 	exp = write(fd, buffer, count);
 	experr = errno;
 	write(fd, "\n", 1);
+	errno = 0;
 	got = ft_write(fd, buffer, count);
 	goterr = errno;
 	write(fd, "\n", 1);

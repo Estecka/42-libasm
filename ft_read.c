@@ -10,9 +10,45 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <fcntl.h>
+
 #include "main.h"
 
-static void test(int fd)
+static void test_path(char *path)
+{
+	int		fd;
+	ssize_t	exp;
+	int		experr;
+	ssize_t	got;
+	int		goterr;
+	char	*buffer;
+
+	printfc(WHITE, 1, "\n> ");
+	printfc(CYAN, 1, "%s\n", path);
+	buffer = malloc(40);
+
+	fd = open(path, O_RDONLY);
+	exp = read(fd, buffer, 19);
+	close(fd);
+	experr = errno;
+
+	fd = open(path, O_RDONLY);
+	got = ft_read(fd, buffer + 20, 19);
+	goterr = errno;
+	close(fd);
+
+	buffer[19] = '\0';
+	buffer[39] = '\0';
+	printf("Expected: %d %zd %s\nGot:      %d %zd %s \n",
+		experr, exp, buffer, goterr, got, buffer + 20);
+	if (exp == got && experr == goterr && !strncmp(buffer, buffer + 20, 20))
+		printfc(GREEN, 1, "OK\n");
+	else
+		printfc(RED, 1, "KO\n");
+	close(fd);
+}
+
+static void test_fd(int fd)
 {
 	ssize_t	exp;
 	int		experr;
@@ -23,16 +59,14 @@ static void test(int fd)
 	printfc(WHITE, 1, "\n> ");
 	printfc(CYAN, 1, "%d\n", fd);
 	printclear();
-	buffer = malloc(21);
-	exp = read(fd, buffer, 10);
+	buffer = malloc(20);
+	exp = read(fd, buffer, 9);
 	experr = errno;
-	write(fd, "\n", 1);
-	got = ft_read(fd, buffer + 11, 10);
+	got = ft_read(fd, buffer + 10, 9);
 	goterr = errno;
-	write(fd, "\n", 1);
 	buffer[10] = '\0';
 	printf("Expected: %d %zd %s\nGot:      %d %zd %s \n",
-		experr, exp, buffer, goterr, got, buffer + 11);
+		experr, exp, buffer, goterr, got, buffer + 10);
 	if (exp == got && experr == goterr)
 		printfc(GREEN, 1, "OK\n");
 	else
@@ -42,8 +76,14 @@ static void test(int fd)
 extern void	test_read()
 {
 	printfc(YELLOW, 1, "\n\t# ft_read\n");
-	test(0);
-	test(1);
-	test(2);
-	test(-1);
+	test_path("./ft_read.c");
+	test_path("./ft_read.s");
+	test_path("./ft_strdup.s");
+	test_path("./makefile");
+	test_path("./.gitignore");
+	test_path("gnouh");
+	test_fd(-1);
+	//test_fd(0);
+	//test_fd(1);
+	//test_fd(2);
 }
