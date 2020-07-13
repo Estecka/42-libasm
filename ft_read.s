@@ -1,3 +1,5 @@
+extern ft_errno
+
 section .text
 	global ft_read
 
@@ -11,4 +13,10 @@ section .text
 		int 0x80;
 
 		pop rbx; Restore callee-saved register.
+
+		cmp rax, 0;
+		jge end; Sets errno if rvalue is negative
+		call ft_errno
+
+		end:
 		ret;

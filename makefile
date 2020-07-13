@@ -1,4 +1,5 @@
 SRCS	= ft_helloworld.s \
+		ft_errno.s \
 		ft_strlen.s \
 		ft_strcpy.s \
 		ft_strcmp.s \
