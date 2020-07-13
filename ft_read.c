@@ -26,13 +26,16 @@ static void test_path(char *path)
 	printfc(WHITE, 1, "\n> ");
 	printfc(CYAN, 1, "%s\n", path);
 	buffer = malloc(40);
+	memset(buffer, 0, 20);
 
 	fd = open(path, O_RDONLY);
+	errno = 0;
 	exp = read(fd, buffer, 19);
 	close(fd);
 	experr = errno;
 
 	fd = open(path, O_RDONLY);
+	errno = 0;
 	got = ft_read(fd, buffer + 20, 19);
 	goterr = errno;
 	close(fd);
@@ -60,6 +63,7 @@ static void test_fd(int fd)
 	printfc(CYAN, 1, "%d\n", fd);
 	printclear();
 	buffer = malloc(20);
+	memset(buffer, 0, 20);
 	exp = read(fd, buffer, 9);
 	experr = errno;
 	got = ft_read(fd, buffer + 10, 9);
@@ -67,7 +71,7 @@ static void test_fd(int fd)
 	buffer[10] = '\0';
 	printf("Expected: %d %zd %s\nGot:      %d %zd %s \n",
 		experr, exp, buffer, goterr, got, buffer + 10);
-	if (exp == got && experr == goterr)
+	if (exp == got && experr == goterr && !strncmp(buffer, buffer + 20, 20))
 		printfc(GREEN, 1, "OK\n");
 	else
 		printfc(RED, 1, "KO\n");
@@ -81,7 +85,7 @@ extern void	test_read()
 	test_path("./ft_strdup.s");
 	test_path("./makefile");
 	test_path("./.gitignore");
-	test_path("gnouh");
+	test_path("./gnouh");
 	test_fd(-1);
 	//test_fd(0);
 	//test_fd(1);

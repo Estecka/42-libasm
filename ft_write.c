@@ -26,9 +26,12 @@ static void test(int fd, const char* buffer, size_t count)
 	printfc(WHITE, 1, "\" ");
 	printfc(CYAN, 1, "%lu\n", count);
 	printclear();
+
+	errno = 0;
 	exp = write(fd, buffer, count);
 	experr = errno;
 	write(fd, "\n", 1);
+
 	errno = 0;
 	got = ft_write(fd, buffer, count);
 	goterr = errno;
