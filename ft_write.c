@@ -12,12 +12,12 @@
 
 #include "main.h"
 
-static void test(int fd, const char* buffer, size_t count)
+static void	test(int fd, const char *buffer, size_t count)
 {
 	ssize_t	exp;
-	int	experr;
+	int		experr;
 	ssize_t	got;
-	int	goterr;
+	int		goterr;
 
 	printfc(WHITE, 1, "\n> ");
 	printfc(CYAN, 1, "%d", fd);
@@ -26,12 +26,10 @@ static void test(int fd, const char* buffer, size_t count)
 	printfc(WHITE, 1, "\" ");
 	printfc(CYAN, 1, "%lu\n", count);
 	printclear();
-
 	errno = 0;
 	exp = write(fd, buffer, count);
 	experr = errno;
 	write(fd, "\n", 1);
-
 	errno = 0;
 	got = ft_write(fd, buffer, count);
 	goterr = errno;
@@ -43,7 +41,7 @@ static void test(int fd, const char* buffer, size_t count)
 		printfc(RED, 1, "KO\n");
 }
 
-extern void	test_write()
+extern void	test_write(void)
 {
 	printfc(YELLOW, 1, "\n\t# ft_write\n");
 	test(0, "Je suis une Bulle.", 17);

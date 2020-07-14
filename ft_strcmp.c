@@ -12,7 +12,7 @@
 
 #include "main.h"
 
-static void test(const char *src, const char *dst)
+static void	test(const char *src, const char *dst)
 {
 	int	exp;
 	int	got;
@@ -31,7 +31,7 @@ static void test(const char *src, const char *dst)
 		printfc(RED, 1, "KO\n");
 }
 
-extern void	test_strcmp()
+extern void	test_strcmp(void)
 {
 	printfc(YELLOW, 1, "\n\t# ft_strcmp\n");
 	test("Je suis une bulle.", "Je suis une bulle");

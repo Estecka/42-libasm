@@ -12,9 +12,10 @@
 
 #include "main.h"
 
-static void test(const char *string)
+static void	test(const char *string)
 {
-	int exp, got;
+	int exp;
+	int got;
 
 	printfc(WHITE, 1, "\n> \"");
 	printfc(CYAN, 1, "%s", string);
@@ -28,7 +29,7 @@ static void test(const char *string)
 		printfc(RED, 1, "KO\n");
 }
 
-extern void	test_strlen()
+extern void	test_strlen(void)
 {
 	printfc(YELLOW, 1, "\n\t# ft_strlen\n");
 	test("Je suis une bulle.");

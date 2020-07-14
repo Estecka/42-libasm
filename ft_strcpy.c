@@ -12,7 +12,7 @@
 
 #include "main.h"
 
-static void test(const char *string)
+static void	test(const char *string)
 {
 	char	*exp;
 	char	*got;
@@ -34,7 +34,7 @@ static void test(const char *string)
 	free(got);
 }
 
-extern void	test_strcpy()
+extern void	test_strcpy(void)
 {
 	printfc(YELLOW, 1, "\n\t# ft_strcpy\n");
 	test("Je suis une bulle.");

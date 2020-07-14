@@ -16,7 +16,6 @@ extern int	main(int argc, char **args)
 {
 	(void)argc;
 	(void)args;
-
 	ft_helloworld();
 	test_strlen();
 	test_strcpy();

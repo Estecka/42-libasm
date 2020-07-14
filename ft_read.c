@@ -14,7 +14,7 @@
 
 #include "main.h"
 
-static void test_path(char *path)
+static void	test_path(char *path)
 {
 	int		fd;
 	ssize_t	exp;
@@ -27,19 +27,16 @@ static void test_path(char *path)
 	printfc(CYAN, 1, "%s\n", path);
 	buffer = malloc(40);
 	memset(buffer, 0, 20);
-
 	fd = open(path, O_RDONLY);
 	errno = 0;
 	exp = read(fd, buffer, 19);
 	close(fd);
 	experr = errno;
-
 	fd = open(path, O_RDONLY);
 	errno = 0;
 	got = ft_read(fd, buffer + 20, 19);
 	goterr = errno;
 	close(fd);
-
 	buffer[19] = '\0';
 	buffer[39] = '\0';
 	printf("Expected: %d %zd %s\nGot:      %d %zd %s \n",
@@ -51,7 +48,7 @@ static void test_path(char *path)
 	close(fd);
 }
 
-static void test_fd(int fd)
+static void	test_fd(int fd)
 {
 	ssize_t	got;
 	int		goterr;
@@ -69,7 +66,7 @@ static void test_fd(int fd)
 		goterr, got, buffer);
 }
 
-extern void	test_read()
+extern void	test_read(void)
 {
 	printfc(YELLOW, 1, "\n\t# ft_read\n");
 	test_path("./ft_read.c");
