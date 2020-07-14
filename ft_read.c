@@ -53,8 +53,6 @@ static void test_path(char *path)
 
 static void test_fd(int fd)
 {
-	ssize_t	exp;
-	int		experr;
 	ssize_t	got;
 	int		goterr;
 	char	*buffer;
@@ -64,17 +62,11 @@ static void test_fd(int fd)
 	printclear();
 	buffer = malloc(20);
 	memset(buffer, 0, 20);
-	exp = read(fd, buffer, 9);
-	experr = errno;
-	got = ft_read(fd, buffer + 10, 9);
+	got = ft_read(fd, buffer, 20);
 	goterr = errno;
-	buffer[10] = '\0';
-	printf("Expected: %d %zd %s\nGot:      %d %zd %s \n",
-		experr, exp, buffer, goterr, got, buffer + 10);
-	if (exp == got && experr == goterr && !strncmp(buffer, buffer + 20, 20))
-		printfc(GREEN, 1, "OK\n");
-	else
-		printfc(RED, 1, "KO\n");
+	buffer[19] = '\0';
+	printf("Got:      %d %zd %19s \n",
+		goterr, got, buffer);
 }
 
 extern void	test_read()
@@ -87,7 +79,7 @@ extern void	test_read()
 	test_path("./.gitignore");
 	test_path("./gnouh");
 	test_fd(-1);
-	//test_fd(0);
-	//test_fd(1);
-	//test_fd(2);
+	test_fd(0);
+	test_fd(1);
+	test_fd(2);
 }
