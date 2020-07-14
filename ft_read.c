@@ -17,35 +17,21 @@
 static void	test_path(char *path)
 {
 	int		fd;
-	ssize_t	exp;
-	int		experr;
-	ssize_t	got;
-	int		goterr;
-	char	*buffer;
+	ssize_t	rval;
+	int		err;
+	char	buff[20];
 
 	printfc(WHITE, 1, "\n> ");
 	printfc(CYAN, 1, "%s\n", path);
-	buffer = malloc(40);
-	memset(buffer, 0, 20);
-	fd = open(path, O_RDONLY);
 	errno = 0;
-	exp = read(fd, buffer, 19);
-	close(fd);
-	experr = errno;
 	fd = open(path, O_RDONLY);
+	printfc(MAGENTA, 1, "fd %d opened with errno %d\n", fd, errno);
 	errno = 0;
-	got = ft_read(fd, buffer + 20, 19);
-	goterr = errno;
+	rval = ft_read(fd, buff, 20);
+	err = errno;
 	close(fd);
-	buffer[19] = '\0';
-	buffer[39] = '\0';
-	printf("Expected: %d %zd %s\nGot:      %d %zd %s \n",
-		experr, exp, buffer, goterr, got, buffer + 20);
-	if (exp == got && experr == goterr && !strncmp(buffer, buffer + 20, 20))
-		printfc(GREEN, 1, "OK\n");
-	else
-		printfc(RED, 1, "KO\n");
-	close(fd);
+	printf("Got:      %d %zd %.20s \n",
+		err, rval, buff);
 }
 
 static void	test_fd(int fd)
