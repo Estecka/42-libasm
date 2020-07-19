@@ -19,7 +19,7 @@ static void	test_path(char *path)
 	int		fd;
 	ssize_t	rval;
 	int		err;
-	char	buff[20];
+	char	buff[21];
 
 	printfc(WHITE, 1, "\n> ");
 	printfc(CYAN, 1, "%s\n", path);
@@ -59,7 +59,4 @@ extern void	test_read(void)
 	test_path("./.gitignore");
 	test_path("./gnouh");
 	test_fd(-1);
-	//test_fd(0);
-	//test_fd(1);
-	//test_fd(2);
 }

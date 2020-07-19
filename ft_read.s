@@ -4,15 +4,11 @@ section .text
 	global ft_read
 
 	ft_read:
-		push rbx; Back up callee-saved register.
-
-		mov rax, 3; SYS_READ
-		mov rbx, rdi; fd
-		mov rcx, rsi; buffer
-		;mov dword rdx, rdx; count
-		int 0x80;
-
-		pop rbx; Restore callee-saved register.
+		mov rax, 0; SYS_READ
+		;mov rdi, rdi; fd
+		;mov rsi, rsi; buffer
+		;mov rdx, rdx; count
+		syscall;
 
 		cmp rax, 0;
 		jge end; Sets errno if rvalue is negative
