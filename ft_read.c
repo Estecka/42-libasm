@@ -38,17 +38,14 @@ static void	test_fd(int fd)
 {
 	ssize_t	got;
 	int		goterr;
-	char	*buffer;
+	char	buffer[20];
 
 	printfc(WHITE, 1, "\n> ");
 	printfc(CYAN, 1, "%d\n", fd);
 	printclear();
-	buffer = malloc(20);
-	memset(buffer, 0, 20);
 	got = ft_read(fd, buffer, 20);
 	goterr = errno;
-	buffer[19] = '\0';
-	printf("Got:      %d %zd %19s \n",
+	printf("Got:      %d %zd %.20s \n",
 		goterr, got, buffer);
 }
 
@@ -62,7 +59,7 @@ extern void	test_read(void)
 	test_path("./.gitignore");
 	test_path("./gnouh");
 	test_fd(-1);
-	test_fd(0);
-	test_fd(1);
-	test_fd(2);
+	//test_fd(0);
+	//test_fd(1);
+	//test_fd(2);
 }

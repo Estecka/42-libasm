@@ -6,8 +6,8 @@ section .text
 	ft_read:
 		push rbx; Back up callee-saved register.
 
-		mov eax, 3; SYS_READ
-		mov ebx, edi; fd
+		mov rax, 3; SYS_READ
+		mov rbx, rdi; fd
 		mov rcx, rsi; buffer
 		;mov dword rdx, rdx; count
 		int 0x80;
