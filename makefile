@@ -5,6 +5,7 @@ SRCS	= ft_helloworld.s \
 		ft_strcmp.s \
 		ft_write.s \
 		ft_read.s \
+		ft_strdup.s \
 
 OBJS	= ${SRCS:=.o}
 
@@ -15,6 +16,7 @@ TESTSRCS = main.c \
 	ft_strcmp.c \
 	ft_write.c \
 	ft_read.c \
+	ft_strdup.c \
 
 TESTOBJS = ${TESTSRCS:=.o}
 
