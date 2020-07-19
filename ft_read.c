@@ -21,6 +21,7 @@ static void	test_path(char *path)
 	int		err;
 	char	buff[21];
 
+	memset(buff, '\0', 21);
 	printfc(WHITE, 1, "\n> ");
 	printfc(CYAN, 1, "%s\n", path);
 	errno = 0;
@@ -38,8 +39,9 @@ static void	test_fd(int fd)
 {
 	ssize_t	got;
 	int		goterr;
-	char	buffer[20];
+	char	buffer[21];
 
+	memset(buffer, '\0', 21);
 	printfc(WHITE, 1, "\n> ");
 	printfc(CYAN, 1, "%d\n", fd);
 	printclear();
